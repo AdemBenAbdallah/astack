@@ -28,8 +28,8 @@ npx skills add AdemBenAbdallah/astack --skill ask3
 | [ask3](skills/ask3/SKILL.md) | `/ask3 <question>` sends one question to Fable 5.2, Opus 5.5 and Sonnet 5.5 in parallel, then gives a short verdict, a comparison table, and where they agree and differ. Needs [T3 Code](https://github.com/pingdotgg/t3code) (uses its `delegate_task` child agents). |
 | [demo-video](skills/demo-video/SKILL.md) | `/demo-video <feature>` records an MP4 demo of a feature in any running web app, with captions and highlighted clicks. Needs Node, Chrome/Chromium and ffmpeg. |
 | [bro](skills/bro/SKILL.md) | `/bro` restates the last reply in plain words, no jargon. From pstack. |
-| [sharpen](skills/sharpen/SKILL.md) | `/sharpen` makes a task deeper, not bigger, then rewrites the prompt. From pstack. |
-| [blast-radius](skills/blast-radius/SKILL.md) | `/blast-radius` finds what a change could break outside the diff and proves the key safety fact by running real code. From pstack. |
+| [expert](skills/expert/SKILL.md) | `/expert` rewrites your prompt so the task is done like a top expert would: deeper, not bigger. From pstack (`sharpen`). |
+| [breaks](skills/breaks/SKILL.md) | `/breaks` finds what a change could break outside the diff and proves the key safety fact by running real code. From pstack (`blast-radius`). |
 
 ## Add a new skill
 
@@ -39,4 +39,4 @@ npx skills add AdemBenAbdallah/astack --skill ask3
 
 ## Credits
 
-`bro`, `sharpen` and `blast-radius` come from [pstack](https://github.com/cursor/plugins/tree/bf0c7cd/pstack) by Lauren Tan (poteto), MIT license ([copy](licenses/pstack-LICENSE)). `blast-radius` is lightly edited to not depend on other pstack skills.
+`bro`, `expert` (was `sharpen`) and `breaks` (was `blast-radius`) come from [pstack](https://github.com/cursor/plugins/tree/bf0c7cd/pstack) by Lauren Tan (poteto), MIT license ([copy](licenses/pstack-LICENSE)). `breaks` is lightly edited to not depend on other pstack skills.

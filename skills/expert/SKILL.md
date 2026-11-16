@@ -1,6 +1,6 @@
 ---
-name: sharpen
-description: "Make a task deeper, not bigger, then rewrite the prompt. Use for /sharpen."
+name: expert
+description: "Make a task deeper, not bigger, then rewrite the prompt. Use for /expert."
 disable-model-invocation: true
 ---
 
