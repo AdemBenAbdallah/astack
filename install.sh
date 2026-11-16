@@ -24,8 +24,9 @@ for target in "${TARGETS[@]}"; do
     name="$(basename "$skill")"
     dest="$target/$name"
     if [ -e "$dest" ] && [ ! -L "$dest" ]; then
-      mv "$dest" "$dest.bak.$(date +%s)"
-      echo "  backed up existing $dest"
+      backup="$HOME/.skills-backup/$(date +%s)/$(basename "$target")"
+      mkdir -p "$backup" && mv "$dest" "$backup/"
+      echo "  moved existing $dest to $backup"
     fi
     ln -sfn "${skill%/}" "$dest"
   done
