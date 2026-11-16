@@ -1,4 +1,6 @@
-# Adem's skills
+# astack
+
+Adem's skill stack.
 
 The agent skills I use every day with Claude Code, Codex and other agents.
 Public, so take whatever helps you.
@@ -6,17 +8,17 @@ Public, so take whatever helps you.
 ## Install on a new machine
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/AdemBenAbdallah/skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/AdemBenAbdallah/astack/main/install.sh | bash
 ```
 
-This clones the repo to `~/Work/skills` (change it with `SKILLS_DIR=...`) and symlinks
+This clones the repo to `~/Work/astack` (change it with `SKILLS_DIR=...`) and symlinks
 each skill into `~/.claude/skills`, plus `~/.agents/skills` and `~/.codex/skills` when those
 agents are installed. Run it again (or `git pull`) to update.
 
 Just want one skill? With the [skills CLI](https://github.com/vercel-labs/skills):
 
 ```bash
-npx skills add AdemBenAbdallah/skills --skill ask3
+npx skills add AdemBenAbdallah/astack --skill ask3
 ```
 
 ## Skills
@@ -29,4 +31,4 @@ npx skills add AdemBenAbdallah/skills --skill ask3
 
 1. Create `skills/<name>/SKILL.md` (frontmatter with `name` and `description`).
 2. Run `./install.sh` to link it.
-3. Commit and push. On other machines: `git -C ~/Work/skills pull`.
+3. Commit and push. On other machines: `git -C ~/Work/astack pull`.

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Install Adem's skills on this machine.
-#   curl -fsSL https://raw.githubusercontent.com/AdemBenAbdallah/skills/main/install.sh | bash
+# Install astack (Adem's skills) on this machine.
+#   curl -fsSL https://raw.githubusercontent.com/AdemBenAbdallah/astack/main/install.sh | bash
 # Clones (or updates) the repo, then symlinks every skill into each agent's skills folder.
 # Because they are symlinks, `git pull` in the repo updates every agent at once.
 set -euo pipefail
 
-REPO="https://github.com/AdemBenAbdallah/skills.git"
-DIR="${SKILLS_DIR:-$HOME/Work/skills}"
+REPO="https://github.com/AdemBenAbdallah/astack.git"
+DIR="${SKILLS_DIR:-$HOME/Work/astack}"
 TARGETS=("$HOME/.claude/skills" "$HOME/.agents/skills" "$HOME/.codex/skills")
 
 if [ -d "$DIR/.git" ]; then
