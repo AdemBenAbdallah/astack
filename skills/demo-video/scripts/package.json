@@ -1,0 +1,8 @@
+{
+  "name": "demo-video-kit",
+  "private": true,
+  "description": "Scripts for the demo-video skill",
+  "dependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}

@@ -26,6 +26,7 @@ npx skills add AdemBenAbdallah/astack --skill ask3
 | Skill | What it does |
 |---|---|
 | [ask3](skills/ask3/SKILL.md) | `/ask3 <question>` sends one question to Fable 5.2, Opus 5.5 and Sonnet 5.5 in parallel, then gives a short verdict, a comparison table, and where they agree and differ. Needs [T3 Code](https://github.com/pingdotgg/t3code) (uses its `delegate_task` child agents). |
+| [demo-video](skills/demo-video/SKILL.md) | `/demo-video <feature>` records an MP4 demo of a feature in any running web app: headless Chrome clicks through the real app, with captions and highlighted clicks. One small `.demo/demo.config.js` per project (app URL + how to log in). Needs Node, Chrome/Chromium and ffmpeg. |
 
 ## Add a new skill
 

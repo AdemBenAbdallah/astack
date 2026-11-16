@@ -16,6 +16,13 @@ else
   git clone --quiet "$REPO" "$DIR"
 fi
 
+# Skills that ship scripts with npm dependencies (e.g. demo-video) get them installed once.
+for pkg in "$DIR"/skills/*/scripts/package.json; do
+  [ -f "$pkg" ] || continue
+  dir="$(dirname "$pkg")"
+  [ -d "$dir/node_modules" ] || (echo "npm install in $dir" && npm install --silent --prefix "$dir")
+done
+
 for target in "${TARGETS[@]}"; do
   # Only install for agents that exist here (~/.claude always gets them).
   [ -d "$(dirname "$target")" ] || [ "$target" = "$HOME/.claude/skills" ] || continue
