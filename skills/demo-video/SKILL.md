@@ -1,6 +1,6 @@
 ---
 name: demo-video
-description: Record a short MP4 demo of a web app feature (the real running app, with captions and highlighted clicks) for a PR, a client or a changelog. Use when the user asks for a demo video, screen recording or walkthrough of a feature.
+description: Record an MP4 demo of a web app feature (the real running app, with captions and highlighted clicks) for a PR, a client or a changelog. Use when the user asks for a demo video, screen recording or walkthrough of a feature.
 argument-hint: <feature and what the video should show>
 ---
 
