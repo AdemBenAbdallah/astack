@@ -16,7 +16,7 @@ else
   git clone --quiet "$REPO" "$DIR"
 fi
 
-# Skills that ship scripts with npm dependencies (e.g. demo-video) get them installed once.
+# Skills that ship scripts with npm dependencies get them installed once.
 for pkg in "$DIR"/skills/*/scripts/package.json; do
   [ -f "$pkg" ] || continue
   dir="$(dirname "$pkg")"
@@ -27,6 +27,10 @@ for target in "${TARGETS[@]}"; do
   # Only install for agents that exist here (~/.claude always gets them).
   [ -d "$(dirname "$target")" ] || [ "$target" = "$HOME/.claude/skills" ] || continue
   mkdir -p "$target"
+  # Remove links to skills that were renamed or deleted in the repo.
+  for link in "$target"/*; do
+    [ -L "$link" ] && [[ "$(readlink "$link")" == "$DIR/skills/"* ]] && [ ! -e "$link" ] && rm "$link" && echo "  removed old $link"
+  done
   for skill in "$DIR"/skills/*/; do
     name="$(basename "$skill")"
     dest="$target/$name"
