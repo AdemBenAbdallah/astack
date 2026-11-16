@@ -10,7 +10,7 @@ DIR="${SKILLS_DIR:-$HOME/Work/astack}"
 TARGETS=("$HOME/.claude/skills" "$HOME/.agents/skills" "$HOME/.codex/skills")
 
 if [ -d "$DIR/.git" ]; then
-  git -C "$DIR" pull --ff-only --quiet
+  git -C "$DIR" pull --ff-only --quiet || echo "could not update $DIR (local changes?), installing what is there"
 else
   mkdir -p "$(dirname "$DIR")"
   git clone --quiet "$REPO" "$DIR"
