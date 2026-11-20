@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# astack: manage Adem's skill stack on this machine.
+set -euo pipefail
+
+# Resolve the repo from this script's real location (it is symlinked into ~/.local/bin).
+DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+
+usage() {
+  cat <<EOF
+usage: astack <command>
+
+  update   pull astack and private skill repos, relink every skill
+  list     show installed skills and where each one comes from
+  status   show uncommitted changes in the skill repos
+  dir      print the astack repo path
+EOF
+}
+
+repos() { # astack plus private repos that are cloned next to it
+  echo "$DIR"
+  grep -oE '"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+"' "$DIR/install.sh" | tr -d '"' | while read -r slug; do
+    [ "$slug" = "AdemBenAbdallah/astack" ] && continue
+    d="$(dirname "$DIR")/${slug#*/}"
+    [ -d "$d/.git" ] && echo "$d"
+  done
+}
+
+case "${1:-}" in
+  update) SKILLS_DIR="$DIR" exec bash "$DIR/install.sh" ;;
+  list)
+    for link in "$HOME"/.claude/skills/*; do
+      [ -L "$link" ] || continue
+      t="$(readlink "$link")"
+      while read -r r; do
+        [[ "$t" == "$r/"* ]] && printf '%-16s %s\n' "$(basename "$link")" "$(basename "$r")"
+      done < <(repos)
+    done ;;
+  status)
+    while read -r r; do
+      echo "== $(basename "$r")"
+      git -C "$r" status --short --branch
+    done < <(repos) ;;
+  dir) echo "$DIR" ;;
+  ""|-h|--help|help) usage ;;
+  *) echo "unknown command: $1"; usage; exit 1 ;;
+esac

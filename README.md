@@ -13,7 +13,19 @@ curl -fsSL https://raw.githubusercontent.com/AdemBenAbdallah/astack/main/install
 
 This clones the repo to `~/Work/astack` (change it with `SKILLS_DIR=...`) and symlinks
 each skill into `~/.claude/skills`, plus `~/.agents/skills` and `~/.codex/skills` when those
-agents are installed. Run it again (or `git pull`) to update.
+agents are installed. It also adds an `astack` command to `~/.local/bin`:
+
+```bash
+astack update   # pull every skill repo and relink (run this on other machines after a push)
+astack list     # installed skills and which repo each comes from
+astack status   # uncommitted changes in the skill repos
+```
+
+### Private skills
+
+Some of my skills live in private repos (listed in `PRIVATE_REPOS` in `install.sh`). The installer
+clones them next to astack and links them only on machines signed in to GitHub with access
+(`gh auth login`). Everywhere else they are skipped and the public skills still install.
 
 Just want one skill? With the [skills CLI](https://github.com/vercel-labs/skills):
 
@@ -35,7 +47,9 @@ npx skills add AdemBenAbdallah/astack --skill ask3
 
 1. Create `skills/<name>/SKILL.md` (frontmatter with `name` and `description`).
 2. Run `./install.sh` to link it.
-3. Commit and push. On other machines: `git -C ~/Work/astack pull`.
+3. Commit and push. On other machines: `astack update`.
+
+For a private skill, push it to its own private repo and add the repo to `PRIVATE_REPOS`.
 
 ## Credits
 
